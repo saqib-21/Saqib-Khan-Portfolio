@@ -22,7 +22,7 @@ const ProjectCard = ({ project, index }: { project: typeof siteConfig.projects[0
             src={project.image} 
             alt={project.title}
             className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 15%' }}
+            style={{ objectPosition: 'center 40%' }}
           />
         ) : (
           <Folder className="w-12 h-12 text-primary/30" />
