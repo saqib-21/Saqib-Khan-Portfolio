@@ -117,6 +117,12 @@ export const siteConfig = {
   ],
   experience: [
     {
+      company: "IESO",
+      role: "Solutions Team Developer",
+      period: "May 2026 - Present",
+      description: "Supported internal business teams through full-stack web development, database work, and workflow automation. Built frontend and backend features for internal applications, worked with SQL databases, and supported ETL pipelines used to move and transform business data across systems. Automated repetitive manual tasks, saving an estimated 5-10 hours per week while improving consistency and reducing the chance of human error.",
+    },
+    {
       company: "Sumobot",
       role: "Software Engineer",
       period: "August 2025 - Present",
