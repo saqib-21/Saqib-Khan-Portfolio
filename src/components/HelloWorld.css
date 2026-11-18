@@ -1,0 +1,232 @@
+.hello-world {
+  --greeting-ink: #244937;
+  --greeting-motion: hello-rise;
+  --greeting-timing: cubic-bezier(.2, .7, .35, 1);
+  width: fit-content;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, max-content) auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+  color: var(--greeting-ink);
+}
+
+.hello-world-earth {
+  display: block;
+  width: clamp(42px, 8vw, 52px);
+  aspect-ratio: 1;
+  align-self: center;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.hello-world-earth img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hello-world-lettering {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .23em;
+  font-size: clamp(1rem, 4.8vw, 1.46rem);
+  font-weight: 800;
+  letter-spacing: -.05em;
+  line-height: 1.1;
+}
+
+.hello-world-lettering > span {
+  animation: var(--greeting-motion) .46s var(--greeting-timing) backwards;
+}
+
+.hello-world-lettering > span + span { animation-delay: .08s; }
+
+@keyframes hello-rise {
+  from { opacity: 0; translate: 0 9px; }
+}
+
+@keyframes hello-bounce {
+  0% { opacity: 0; translate: 0 10px; scale: .75; }
+  62% { scale: 1.08; translate: 0 -3px; }
+}
+
+@keyframes hello-stamp {
+  0% { opacity: 0; scale: 1.35; rotate: -9deg; }
+  70% { scale: .96; rotate: 2deg; }
+}
+
+@keyframes hello-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hello-world-lettering > span { animation: none; }
+}
+
+.hello-world-next {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: inherit;
+  background: transparent;
+  border-radius: 50%;
+  transition: background-color .15s ease;
+}
+
+.hello-world-next:hover { background-color: #24634313; }
+
+.hello-world--bricks { --greeting-motion: hello-stamp; }
+
+.hello-world--bricks .hello-world-lettering span {
+  position: relative;
+  padding: 7px 7px 4px;
+  color: #15372a;
+  background: #b7d788;
+  border: 1px solid #688350;
+  border-radius: 3px;
+  box-shadow: inset 0 2px #ffffff5e, 0 3px #688350;
+}
+
+.hello-world--bricks .hello-world-lettering span:last-child {
+  color: #44310c;
+  background-color: #f1cc69;
+  border-color: #ad7927;
+  box-shadow: inset 0 2px #ffffff5e, 0 3px #ad7927;
+}
+
+.hello-world--bricks .hello-world-lettering span::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 5px;
+  left: 15%;
+  top: -5px;
+  background: radial-gradient(ellipse at 50% 100%, #688350 58%, transparent 62%) 0 0 / 33.33% 100%;
+}
+
+.hello-world--bricks .hello-world-lettering span:last-child::before {
+  background-image: radial-gradient(ellipse at 50% 100%, #ad7927 58%, transparent 62%);
+}
+
+.hello-world--bubbles {
+  --greeting-motion: hello-bounce;
+  --greeting-ink: #174861;
+}
+
+.hello-world--bubbles .hello-world-lettering span {
+  padding: 4px 7px;
+  background: linear-gradient(160deg, #fff 9%, #e6f0ff 35%, #c4f4e9 87%);
+  border: 1px solid #55a8bd;
+  border-radius: 50%;
+  letter-spacing: -.07em;
+  box-shadow: inset 0 -3px 7px #91c3e480, 1px 3px 0 #83b3c225;
+}
+
+.hello-world--bubbles .hello-world-lettering span:last-child { transform: translateY(-4px) rotate(-5deg); }
+
+.hello-world--graffiti {
+  --greeting-motion: hello-stamp;
+  --greeting-ink: #432854;
+}
+
+.hello-world--graffiti .hello-world-lettering {
+  color: #473259;
+  font-style: italic;
+  font-weight: 1000;
+  letter-spacing: -.065em;
+  text-transform: uppercase;
+  text-shadow: 1px -1px #fff, -1px 1px #fff, 2px 3px #b7d16b;
+  transform: skewY(-5deg);
+}
+
+.hello-world--graffiti .hello-world-lettering span:last-child {
+  text-decoration: underline double #60447a;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.hello-world--code {
+  --greeting-motion: hello-wipe;
+  --greeting-timing: steps(6, end);
+  --greeting-ink: #246343;
+}
+
+.hello-world--code .hello-world-lettering {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: clamp(.82rem, 3.6vw, 1.05rem);
+  letter-spacing: -.035em;
+}
+
+.hello-world--code .hello-world-lettering::before { content: ">"; color: #325e75; margin-right: .2em; }
+.hello-world--code .hello-world-lettering::after { content: "_"; color: #325e75; }
+
+.hello-world--arcade {
+  --greeting-timing: steps(5, end);
+  --greeting-ink: #492a6b;
+}
+
+.hello-world--arcade .hello-world-lettering {
+  font-family: "Courier New", monospace;
+  font-size: clamp(.82rem, 3.7vw, 1.08rem);
+  letter-spacing: -.06em;
+  text-shadow: 2px 2px #c9acce, 3px 3px #dfcce7;
+  text-transform: uppercase;
+}
+
+.hello-world--newspaper { --greeting-ink: #453928; }
+
+.hello-world--newspaper .hello-world-lettering {
+  padding-block: 4px;
+  border-block: 3px double #7c6c56;
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -.07em;
+}
+
+.hello-world--newspaper .hello-world-lettering span:last-child { font-style: italic; }
+
+.hello-world--blueprint { --greeting-ink: #1c4d73; }
+
+.hello-world--blueprint .hello-world-lettering {
+  width: fit-content;
+  padding-block: 4px;
+  border-bottom: 1px dashed #2e6590;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: clamp(.8rem, 3.5vw, 1rem);
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+}
+
+.hello-world--postcard {
+  --greeting-motion: hello-stamp;
+  --greeting-ink: #763e34;
+}
+
+.hello-world--postcard .hello-world-lettering {
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: clamp(.98rem, 4.5vw, 1.3rem);
+  font-style: italic;
+  transform: rotate(-3deg);
+}
+
+.hello-world--chrome { --greeting-ink: #354249; }
+
+.hello-world--chrome .hello-world-lettering {
+  color: #3f4f57;
+  text-shadow: 0 1px #fff, 0 2px #9aa8b0;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.hello-world--stitched { --greeting-ink: #23493d; }
+
+.hello-world--stitched .hello-world-lettering {
+  text-decoration: underline dashed #486f5b;
+  text-underline-offset: .3em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.9rem, 4.4vw, 1.3rem);
+}
