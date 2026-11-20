@@ -1,16 +1,29 @@
 import { siteConfig } from "./site";
 import { Activity, BrainCircuit, Radar, type LucideIcon } from "lucide-react";
 
-const [neurovision, , liftez, drone] = siteConfig.projects;
+const [neurovision, , , drone, , fileOps] = siteConfig.projects;
 
-type PortfolioProject = {
+type ProjectScreenshot = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+export type PortfolioProject = {
   title: string;
   type: string;
   description: string;
   stack: string[];
   href: string;
   linkLabel: string;
-} & ({ preview: "phone" } | { preview: "icon"; icon: LucideIcon; color: string });
+  wide?: boolean;
+} & (
+  | { preview: "phone" }
+  | { preview: "icon"; icon: LucideIcon; color: string }
+  | { preview: "tablet" | "laptop" | "screenshot"; screenshot: ProjectScreenshot }
+  | { preview: "terminal"; sample: string }
+);
 
 export const projects: PortfolioProject[] = [
   {
@@ -18,9 +31,40 @@ export const projects: PortfolioProject[] = [
     type: "Real-time web app",
     description: "Live lift bridge status for Ontario and Quebec. It started as a tool to help more than 10,000 local residents plan around Welland Canal bridge closures.",
     preview: "phone",
+    wide: true,
     stack: ["React", "Node.js", "Express", "Supabase", "Leaflet"],
     href: "https://bridgestatus.ca",
     linkLabel: "Open BridgeStatus.ca",
+  },
+  {
+    title: "Our Flower Album",
+    type: "Interactive photo album",
+    description: "A floral scrapbook with page-turn animations and a photo library that syncs across devices.",
+    preview: "tablet",
+    screenshot: {
+      src: "/projects/flower-album-tablet.jpg",
+      alt: "Our Flower Album’s green floral book cover on a wood surface inside a tablet frame",
+      width: 1024,
+      height: 768,
+    },
+    stack: ["React", "TypeScript", "Firebase", "React PageFlip"],
+    href: "https://flower-album-2026.vercel.app/",
+    linkLabel: "Open Our Flower Album",
+  },
+  {
+    title: "11.03.22 Anniversary Website",
+    type: "Personal website",
+    description: "A digital keepsake with a live anniversary timer, a photo gallery, a playlist, and interactive coupons.",
+    preview: "laptop",
+    screenshot: {
+      src: "/projects/anniversary-laptop.jpg",
+      alt: "The anniversary homepage showing a live timer and rose-petal border inside a laptop frame",
+      width: 1265,
+      height: 712,
+    },
+    stack: ["HTML", "CSS", "JavaScript"],
+    href: "https://saqib-21.github.io/11-03-2022/",
+    linkLabel: "Open the 11.03.22 Anniversary Website",
   },
   {
     title: "NeuroVision",
@@ -41,14 +85,65 @@ export const projects: PortfolioProject[] = [
     icon: Activity,
     color: "motion",
     stack: ["Python", "Flask", "OpenCV", "MediaPipe"],
-    href: liftez.link,
-    linkLabel: "View Saqib Khan’s GitHub profile",
+    href: "https://github.com/saqib-21/delta-final",
+    linkLabel: "View LiftEZ on GitHub",
+  },
+  {
+    title: "Code-Word",
+    type: "Browser game",
+    description: "A word puzzle with three-, four-, and five-letter modes, a color-coded keyboard, and dictionary-backed guesses.",
+    preview: "screenshot",
+    screenshot: {
+      src: "/projects/code-word.jpg",
+      alt: "The Code-Word game board after a five-letter guess",
+      width: 1085,
+      height: 769,
+    },
+    stack: ["React", "Tailwind CSS", "Dictionary API"],
+    href: "https://github.com/saqib-21/Wordle_Code-Word",
+    linkLabel: "View Code-Word on GitHub",
+  },
+  {
+    title: "EchoBear",
+    type: "Reading app · Team project",
+    description: "An interactive reading app that reads stories aloud, pauses for children to try a word, and offers phonics prompts.",
+    preview: "screenshot",
+    screenshot: {
+      src: "/projects/echobear.jpg",
+      alt: "EchoBear’s homepage with a tap-to-speak prompt for a story idea",
+      width: 1280,
+      height: 720,
+    },
+    stack: ["React", "TypeScript", "Web Speech API"],
+    href: "https://github.com/vuj23/EchoBear",
+    linkLabel: "View EchoBear on GitHub",
+  },
+  {
+    title: "FileOps",
+    type: "Command-line tool · Team project",
+    description: "A Bash toolkit for sorting files, cleaning up duplicates, scheduling backups, and encrypting batches with OpenSSL.",
+    preview: "terminal",
+    sample: "$ ./fileOps.sh\n\nOrganize files · Find duplicates\nBack up · Restore · Encrypt",
+    stack: ["Bash", "OpenSSL", "Linux"],
+    href: fileOps.link,
+    linkLabel: "View FileOps on GitHub",
+  },
+  {
+    title: "Tic-Tac-Toe",
+    type: "Terminal game",
+    description: "A Java game with configurable board sizes and win conditions, local play, and a computer opponent.",
+    preview: "terminal",
+    sample: " X │ O │ X\n───┼───┼───\n O │ X │  \n───┼───┼───\n   │ O │  ",
+    stack: ["Java", "Maven", "JUnit"],
+    href: "https://github.com/saqib-21/tic-tac-toe",
+    linkLabel: "View Tic-Tac-Toe on GitHub",
   },
   {
     title: "Autonomous Rescue Drone",
     type: "Robotics simulation",
     description: "A Java state machine that navigates simulated disaster terrain to locate stranded people and identify safe landing zones.",
     preview: "icon",
+    wide: true,
     icon: Radar,
     color: "radar",
     stack: ["Java", "JUnit"],

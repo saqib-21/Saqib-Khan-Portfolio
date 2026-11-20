@@ -57,7 +57,8 @@
 .portfolio-link { font-weight: 650; white-space: nowrap; }
 .portfolio-projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
 .portfolio-project { overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
-.portfolio-project:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1.35fr 1fr; }
+.portfolio-project--wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+.portfolio-project--wide:first-child { grid-template-columns: 1.35fr 1fr; }
 .project-art {
   display: grid;
   place-items: center;
@@ -87,7 +88,44 @@
 .project-copy > p:not(.portfolio-kicker) { color: var(--muted); }
 .project-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
 .project-stack li { border: 1px solid var(--line); border-radius: 100px; padding: 3px 9px; font-size: .75rem; color: var(--muted); }
-.portfolio-project:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+.project-screenshot {
+  display: grid;
+  place-items: center;
+  min-height: clamp(210px, 29vw, 355px);
+  margin: 0;
+  padding: clamp(14px, 2.5vw, 28px);
+  background: #e2eae2;
+}
+.project-screenshot img {
+  width: 100%;
+  max-width: 425px;
+  height: auto;
+  border: 1px solid #263830;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px #203b2924;
+}
+.project-terminal {
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+  padding: 22px clamp(18px, 4vw, 44px);
+  background: #1e3027;
+  color: #def0e2;
+}
+.project-terminal figcaption {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #476054;
+  color: #a9cfb2;
+  font-size: .8rem;
+}
+.project-terminal pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font: .85rem/1.55 ui-monospace, "Cascadia Code", monospace;
+}
 
 .portfolio-section { padding-block: clamp(62px, 9vw, 120px); }
 .experience-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.75fr); gap: clamp(32px, 7vw, 96px); align-items: start; }
@@ -280,7 +318,7 @@
   .nav-contact svg { display: none; }
   .portfolio-hero { grid-template-columns: 1fr; gap: 34px; padding-block: 54px; }
   .hero-visual { justify-self: start; width: min(100%, 320px); }
-  .portfolio-projects, .portfolio-project:first-child, .portfolio-project:last-child { grid-template-columns: 1fr; }
+  .portfolio-projects, .portfolio-project--wide, .portfolio-project--wide:first-child { grid-template-columns: 1fr; }
   .project-art { min-height: 185px; }
   .experience-timeline { --rail-offset: 16px; }
   .experience-stop { column-gap: 11px; }

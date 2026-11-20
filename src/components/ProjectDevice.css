@@ -1,0 +1,98 @@
+.project-device {
+  --device-field-light: #eef3e9;
+  --device-field-dark: #d4e2d6;
+  --device-ring: #668b7730;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin: 0;
+  padding: clamp(24px, 4vw, 48px) clamp(16px, 3vw, 36px);
+  background: radial-gradient(ellipse at 50% 18%, var(--device-field-light), var(--device-field-dark));
+}
+
+.project-device::before {
+  position: absolute;
+  z-index: -1;
+  width: 92%;
+  aspect-ratio: 1;
+  border: 1px solid var(--device-ring);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 22px var(--device-field-light),
+    0 0 0 23px var(--device-ring),
+    0 0 0 46px var(--device-field-light),
+    0 0 0 47px var(--device-ring);
+  opacity: .65;
+  content: "";
+}
+
+.project-device-unit {
+  position: relative;
+  width: min(100%, 430px);
+}
+
+.project-device[data-orientation="portrait"] .project-device-unit {
+  width: min(100%, 228px);
+}
+
+.project-device-frame {
+  position: relative;
+  padding: 10px 8px 8px;
+  border: 1px solid #56605b;
+  border-radius: clamp(10px, 1.7vw, 17px);
+  background: #181e1c;
+  box-shadow:
+    inset 0 0 0 1px #ffffff30,
+    0 14px 26px #31443e30,
+    0 2px 6px #14262135;
+}
+
+.project-device-frame::before {
+  position: absolute;
+  top: 4px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #465750;
+  content: "";
+}
+
+.project-device-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  background: #e8ede8;
+}
+
+@media (min-width: 621px) {
+  .project-device { min-height: clamp(240px, 39vw, 422px); }
+}
+
+.project-device[data-device="laptop"] {
+  --device-field-light: #f2efe8;
+  --device-field-dark: #e0d9cc;
+  --device-ring: #8e817136;
+}
+
+.project-device[data-device="laptop"] .project-device-frame {
+  width: 90%;
+  margin-inline: auto;
+  border-radius: 12px 12px 2px 2px;
+}
+
+.project-device[data-device="laptop"] .project-device-unit::after {
+  display: block;
+  position: relative;
+  height: clamp(7px, 1.2vw, 11px);
+  border: 1px solid #75817a;
+  border-radius: 2px 2px 48% 48% / 2px 2px 7px 7px;
+  background:
+    linear-gradient(#9ca5a0, #9ca5a0) top center / 18% 48% no-repeat,
+    linear-gradient(#d8dfdb, #929e97);
+  box-shadow: 0 8px 16px #1c30254d;
+  content: "";
+}

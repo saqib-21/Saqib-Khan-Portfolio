@@ -2,11 +2,41 @@ import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lu
 import { BridgePhone } from "@/components/BridgePhone";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { HelloWorld } from "@/components/HelloWorld";
+import { ProjectDevice } from "@/components/ProjectDevice";
 import { siteConfig } from "@/config/site";
 import { SnowGlobe } from "@/components/SnowGlobe";
 import { Toolkit } from "@/components/Toolkit";
-import { projects } from "@/config/portfolio";
+import { projects, type PortfolioProject } from "@/config/portfolio";
 import "./Portfolio.css";
+
+function ProjectPreview({ project }: { project: PortfolioProject }) {
+  switch (project.preview) {
+    case "phone":
+      return <BridgePhone />;
+    case "tablet":
+    case "laptop":
+      return <ProjectDevice device={project.preview} {...project.screenshot} />;
+    case "screenshot":
+      return (
+        <figure className="project-screenshot">
+          <img {...project.screenshot} loading="lazy" decoding="async" />
+        </figure>
+      );
+    case "terminal":
+      return (
+        <figure className="project-terminal">
+          <figcaption>Terminal preview</figcaption>
+          <pre>{project.sample}</pre>
+        </figure>
+      );
+    case "icon":
+      return (
+        <div className={`project-art project-art-${project.color}`} aria-hidden>
+          <span><project.icon size={62} strokeWidth={1.25} /></span>
+        </div>
+      );
+  }
+}
 
 const Index = () => (
   <div className="portfolio" id="top">
@@ -56,12 +86,8 @@ const Index = () => (
           </div>
           <div className="portfolio-projects">
             {projects.map((project) => (
-              <article key={project.title} className="portfolio-project">
-                {project.preview === "phone" ? <BridgePhone /> : (
-                  <div className={`project-art project-art-${project.color}`} aria-hidden>
-                    <span><project.icon size={62} strokeWidth={1.25} /></span>
-                  </div>
-                )}
+              <article key={project.title} className={project.wide ? "portfolio-project portfolio-project--wide" : "portfolio-project"}>
+                <ProjectPreview project={project} />
                 <div className="project-copy">
                   <p className="portfolio-kicker">{project.type}</p>
                   <h3><a href={project.href} aria-label={project.linkLabel}>{project.title}<ArrowUpRight size={21} aria-hidden /></a></h3>
